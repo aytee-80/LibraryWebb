@@ -10,13 +10,14 @@ RUN apt-get update && \
 WORKDIR /opt/glassfish5
 
 # Download and extract GlassFish 5.0.1 from official GitHub
-RUN wget http://download.oracle.com/glassfish/5.0.1/nightly/glassfish-5.0.1-b05-01_20_2019.zip && \
-    unzip glassfish-5.0.1-b05-01_20_2019.zip && \
-    rm glassfish-5.0.1-b05-01_20_2019.zip
+RUN wget --no-check-certificate https://download.oracle.com/glassfish/5.0.1/nightly/glassfish-5.0.1-b05-01_19_2019.zip && \
+    unzip glassfish-5.0.1-b05-01_19_2019.zip && \
+    rm glassfish-5.0.1-b05-01_19_2019.zip
+
 
 
 # Set environment variables
-ENV GLASSFISH_HOME=/opt/glassfish5/glassfish
+ENV GLASSFISH_HOME=/opt/glassfish5/glassfish5
 ENV PATH=$GLASSFISH_HOME/bin:$PATH
 
 # Copy WAR file into autodeploy directory
