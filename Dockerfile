@@ -1,38 +1,32 @@
-# ✅ Use Ubuntu 20.04 as base
-FROM ubuntu:20.04
-
-# ✅ Install dependencies (no OpenJDK)
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    wget unzip curl ca-certificates && \
-    apt-get clean
-
+# Use official Eclipse Temurin 8 JDK as base
 FROM eclipse-temurin:8-jdk
+
+# Install dependencies
 RUN apt-get update && \
     apt-get install -y wget unzip curl && \
     apt-get clean
 
-# ✅ Set working directory
-WORKDIR /opt
+# Set working directory
+WORKDIR /opt/glassfish5
 
-# ✅ Download and extract GlassFish 5.0.1
-RUN wget https://download.oracle.com/glassfish/5.0.1/release/glassfish-5.0.1.zip && \
+# Download and extract GlassFish 5.0.1
+RUN wget https://download.java.net/maven/glassfish/org/glassfish/main/glassfish.zip/5.0.1/glassfish-5.0.1.zip  && \
     unzip glassfish-5.0.1.zip && \
     rm glassfish-5.0.1.zip
 
-# ✅ Set GlassFish environment variables
-ENV GLASSFISH_HOME=/opt/glassfish5/glassfish
+# Set environment variables
+ENV GLASSFISH_HOME /opt/glassfish5/glassfish
 ENV PATH=$GLASSFISH_HOME/bin:$PATH
 
-# ✅ Copy WAR file to GlassFish autodeploy folder
+# Copy WAR file
 COPY dist/Library.war $GLASSFISH_HOME/domains/domain1/autodeploy/app.war
 
-# ✅ Add PostgreSQL JDBC Driver (42.2.5)
+# Add PostgreSQL JDBC driver
 WORKDIR $GLASSFISH_HOME/lib/ext
-RUN wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.5/postgresql-42.2.5.jar -O postgresql.jar
+RUN wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.24/postgresql-42.2.24.jar  -O postgresql.jar
 
-# ✅ Expose HTTP port
+# Expose HTTP port
 EXPOSE 8080
 
-# ✅ Start GlassFish in foreground
-CMD ["sh", "-c", "$GLASSFISH_HOME/bin/asadmin start-domain --verbose"]
+# Start domain and tail logs
+CMD ["asadmin", "start-domain", "domain1", "&&", "tail", "-f", "$GLASSFISH_HOME/glassfish/domains/domain1/logs/server.log"]
