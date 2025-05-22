@@ -172,28 +172,10 @@
     </thead>
     <tbody>
         <%
-           
-              Connection conn = null;
+             
+            Connection conn = null;
             PreparedStatement stmt = null;
             ResultSet rs = null;
-            try {
-                // Step 1: Load the driver class into memory
-                Class.forName("org.postgresql.Driver");
-
-                // Step 2: Connect to the database
-               conn = DBConnections.getConnection();
-
-                // Optional: Do something
-                response.getWriter().println("✅ Connected to database!");
-
-                conn.close();
-            } catch (ClassNotFoundException e) {
-                response.getWriter().println("❌ Driver not found: " + e.getMessage());
-            } catch (SQLException e) {
-                response.getWriter().println("❌ SQL Error: " + e.getMessage());
-            }
-
-          
 
             String search = request.getParameter("search");
             String author = request.getParameter("author");

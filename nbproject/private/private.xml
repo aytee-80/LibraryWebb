@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/update.jsp</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/explore.jsp</file>
+            <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/src/java/addBooksServlet/addBooksServlet.java</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/src/java/DBConnections/TestDB.java</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/report_issued.jsp</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/src/java/DBConnections/DBConnections.java</file>
@@ -25,13 +26,15 @@
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/report1.jsp</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/librarianDashboard.jsp</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/index.html</file>
+            <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/src/java/addBooksServlet/RegisterServlet.java</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/report_available.jsp</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/error.jsp</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/register.jsp</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/borrowBook.jsp</file>
-            <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/displayBooks.jsp</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/returnBook.jsp</file>
+            <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/displayBooks.jsp</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/reserveBook.jsp</file>
+            <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/src/java/addBooksServlet/InitDBServlet.java</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/src/java/addBooksServlet/UpdateBookServlet.java</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/web/updateBookForm.jsp</file>
             <file>file:/C:/Users/Aytee/Documents/NetBeansProjects/Library/src/java/addBooksServlet/ReturnBookServlet.java</file>

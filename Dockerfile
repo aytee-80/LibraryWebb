@@ -1,14 +1,21 @@
 # ✅ Use Ubuntu 20.04 as base
 FROM ubuntu:20.04
 
-# ✅ Install dependencies including JDK 8
+# ✅ Install dependencies (no OpenJDK)
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    wget unzip openjdk-8-jdk curl ca-certificates && \
+    wget unzip curl ca-certificates && \
     apt-get clean
 
+# Install Oracle JDK 8u202 (manual file)
+COPY jdk-8u202-linux-x64.tar.gz /tmp/
+
+RUN mkdir -p /usr/lib/jvm && \
+    tar -xzf /tmp/jdk-8u202-linux-x64.tar.gz -C /usr/lib/jvm && \
+    rm /tmp/jdk-8u202-linux-x64.tar.gz
+
 # ✅ Set environment variables for Java
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/jdk1.8.0_202
 ENV PATH=$JAVA_HOME/bin:$PATH
 
 # ✅ Set working directory
@@ -26,13 +33,12 @@ ENV PATH=$GLASSFISH_HOME/bin:$PATH
 # ✅ Copy WAR file to GlassFish autodeploy folder
 COPY dist/Library.war $GLASSFISH_HOME/domains/domain1/autodeploy/app.war
 
-# ✅ Add PostgreSQL JDBC Driver into GlassFish lib
-# Download and install PostgreSQL driver directly into ext folder
+# ✅ Add PostgreSQL JDBC Driver (42.2.5)
 WORKDIR $GLASSFISH_HOME/lib/ext
-RUN wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar  -O postgresql.jar
+RUN wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.5/postgresql-42.2.5.jar -O postgresql.jar
 
-# ✅ Expose the default HTTP port
+# ✅ Expose HTTP port
 EXPOSE 8080
 
-# ✅ Start GlassFish domain in foreground (no && tail needed)
+# ✅ Start GlassFish in foreground
 CMD ["sh", "-c", "$GLASSFISH_HOME/bin/asadmin start-domain --verbose"]

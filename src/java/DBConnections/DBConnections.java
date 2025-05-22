@@ -6,16 +6,18 @@ import java.sql.*;
 public class DBConnections {
 
     // PostgreSQL database connection details
-    private static final String URL = "jdbc:postgresql://dpg-d0k6omre5dus73bgro6g-a.oregon-postgres.render.com/medicatiion_app";
+private static final String URL = "jdbc:postgresql://dpg-d0k6omre5dus73bgro6g-a.oregon-postgres.render.com/medicatiion_app?sslmode=require";
     private static final String USER = "aytee7"; 
     private static final String PASSWORD = "LqpUqXEqCQ78jxDG7nc0Rk3qFHoDPOm0";
 
     // Static block to initialize database when class loads
     static {
         try {
-          // Load PostgreSQL driver
+            Class.forName("org.postgresql.Driver"); // Load PostgreSQL driver
             initializeDatabase(); // Create tables if not exist
-       
+        } catch (ClassNotFoundException e) {
+            System.err.println("PostgreSQL driver NOT FOUND!");
+            e.printStackTrace();
         } catch (SQLException e) {
             System.err.println("Failed to initialize database: " + e.getMessage());
             e.printStackTrace();
