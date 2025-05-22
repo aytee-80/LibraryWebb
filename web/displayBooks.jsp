@@ -121,9 +121,10 @@
 
                     while (rs.next()) {
                         hasResults = true;
-                        Blob coverImageBlob = rs.getBlob("image");
-                        byte[] coverImageBytes = coverImageBlob != null ? coverImageBlob.getBytes(1, (int) coverImageBlob.length()) : null;
-                        String base64Image = coverImageBytes != null ? java.util.Base64.getEncoder().encodeToString(coverImageBytes) : "";
+
+                        // PostgreSQL: Get image bytes directly from BYTEA column
+                        byte[] coverImageBytes = rs.getBytes("Image");
+                        String base64Image = (coverImageBytes != null) ? java.util.Base64.getEncoder().encodeToString(coverImageBytes) : "";
             %>
                 <tr>
                     <td><%= rs.getInt("BookID") %></td>
@@ -136,7 +137,7 @@
                         <% if (!base64Image.isEmpty()) { %>
                             <img src="data:image/jpeg;base64,<%= base64Image %>" alt="Book Cover"/>
                         <% } else { %>
-                            <img src="path/to/default-image.jpg" alt="No Cover"/>
+                            <img src="images/default-cover.jpg" alt="No Cover"/>
                         <% } %>
                     </td>
                 </tr>

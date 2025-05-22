@@ -152,7 +152,7 @@
                 String sql = "SELECT b.Title, u.Name, u.Email, rb.ReservationDate "
                            + "FROM ReservedBooks rb "
                            + "JOIN Books b ON rb.BookID = b.BookID "
-                           + "JOIN Users u ON rb.UserEmail = u.Email";
+                           + "JOIN Users2 u ON rb.UserEmail = u.Email";
                 stmt = conn.prepareStatement(sql);
                 rs = stmt.executeQuery();
 

@@ -133,92 +133,117 @@
             </tr>
         </thead>
         <tbody>
-        <%
-            Connection conn = null;
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-            Integer userID = (Integer) session.getAttribute("userID");
+            
+            
+       <%
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    Integer userID = (Integer) session.getAttribute("userID");
 
-            try {
-                conn = DBConnections.getConnection();
-                stmt = conn.prepareStatement("SELECT * FROM Books");
-                rs = stmt.executeQuery();
+    try {
+        conn = DBConnections.getConnection();
+        stmt = conn.prepareStatement("SELECT * FROM Books");
+        rs = stmt.executeQuery();
 
-                while (rs.next()) {
-                    int bookId = rs.getInt("BookID");
-                    String title = rs.getString("Title");
-                    String author = rs.getString("Author");
-                    String isbn = rs.getString("ISBN");
-                    String category = rs.getString("Category");
-                    String status = rs.getString("Status");
-                    int borrowedBy = rs.getInt("borrowed_by_member_id");
+        while (rs.next()) {
+            int bookId = rs.getInt("BookID");
+            String title = rs.getString("Title");
+            String author = rs.getString("Author");
+            String isbn = rs.getString("ISBN");
+            String category = rs.getString("Category");
+            String status = rs.getString("Status");
+            Integer borrowedBy = rs.getObject("borrowed_by_member_id", Integer.class);
+            byte[] coverImageBytes = rs.getBytes("Image");
+                        String base64Image = (coverImageBytes != null) ? java.util.Base64.getEncoder().encodeToString(coverImageBytes) : "";
 
-                    byte[] imageBytes = rs.getBytes("image");
-                    String base64Image = "";
-                    if (imageBytes != null) {
-                        base64Image = Base64.getEncoder().encodeToString(imageBytes);
-                    }
-        %>
-            <tr>
-                <td><%= bookId %></td>
-                <td><%= title %></td>
-                <td><%= author %></td>
-                <td><%= isbn %></td>
-                <td><%= category %></td>
-                <td><%= status %></td>
-                <td>
-                    <% if (!base64Image.isEmpty()) { %>
-                        <img src="data:image/jpeg;base64,<%= base64Image %>" width="80" height="100"/>
-                    <% } else { %>
-                        No Image
-                    <% } %>
-                </td>
-                <td>
-                    <%
-                        if ("Available".equals(status)) {
-                    %>
-                        <form action="BookActionsServlet.do" method="post">
-                            <input type="hidden" name="bookId" value="<%= bookId %>">
-                            <button type="submit" class="action-btn available-btn">Request</button>
-                        </form>
-                    <%
-                        } else if ("Borrowed".equals(status)) {
-                            if (borrowedBy == userID) {
-                    %>
-                                <button class="action-btn borrowed-btn disabled-btn" disabled>You borrowed this book</button>
-                    <%
-                            } else {
-                    %>
-                                <form action="BookActionsServlet.do" method="post">
-                                    <input type="hidden" name="bookId" value="<%= bookId %>">
-                                    <button type="submit" class="action-btn borrowed-btn">Reserve</button>
-                                </form>
-                    <%
-                            }
-                        } else if ("Reserved".equals(status)) {
-                            if (borrowedBy == userID) {
-                    %>
-                                <button class="action-btn reserve-btn disabled-btn" disabled>You reserved this book</button>
-                    <%
-                            } else {
-                    %>
-                                <button class="action-btn reserve-btn disabled-btn" disabled>Reserved</button>
-                    <%
-                            }
-                        }
-                    %>
-                </td>
-            </tr>
-        <%
-                }
-            } catch (Exception e) {
-                out.println("<tr><td colspan='8'>Error: " + e.getMessage() + "</td></tr>");
-            } finally {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
+            // Check if the book is reserved
+            Integer reservedBy = null;
+            PreparedStatement reservedStmt = conn.prepareStatement("SELECT UserID FROM ReservedBooks WHERE BookID = ?");
+            reservedStmt.setInt(1, bookId);
+            ResultSet reservedRs = reservedStmt.executeQuery();
+            if (reservedRs.next()) {
+                reservedBy = reservedRs.getInt("UserID");
             }
-        %>
+            reservedRs.close();
+            reservedStmt.close();
+%>
+<tr>
+    <td><%= bookId %></td>
+    <td><%= title %></td>
+    <td><%= author %></td>
+    <td><%= isbn %></td>
+    <td><%= category %></td>
+    <td><%= status %></td>
+    <td>
+         <% if (!base64Image.isEmpty()) { %>
+                                <img src="data:image/jpeg;base64,<%= base64Image %>" alt="Book Cover"/>
+                            <% } else { %>
+                                <img src="path/to/default-image.jpg" alt="No Cover"/>
+                            <% } %>
+    </td>
+    
+        <td>
+    <%
+        if ("Available".equalsIgnoreCase(status)) {
+    %>
+        <form action="BookActionsServlet.do" method="post">
+            <input type="hidden" name="action" value="borrow">
+            <input type="hidden" name="bookId" value="<%= bookId %>">
+            <button type="submit" class="action-btn available-btn">Borrow</button>
+        </form>
+    <%
+        } else if ("Borrowed".equalsIgnoreCase(status)) {
+            if (borrowedBy != null && borrowedBy == userID) {
+    %>
+        <button class="action-btn borrowed-btn disabled-btn" disabled>You borrowed this book</button>
+    <%
+            } else {
+                // Check if already reserved
+                if (reservedBy == null) {
+    %>
+        <form action="BookActionsServlet.do" method="post">
+            <input type="hidden" name="action" value="reserve">
+            <input type="hidden" name="bookId" value="<%= bookId %>">
+            <button type="submit" class="action-btn reserve-btn">Reserve</button>
+        </form>
+    <%
+                } else if (reservedBy == userID) {
+    %>
+        <button class="action-btn reserve-btn disabled-btn" disabled>You reserved this book</button>
+    <%
+                } else {
+    %>
+        <button class="action-btn reserve-btn disabled-btn" disabled>Reserved</button>
+    <%
+                }
+            }
+        } else if ("Reserved".equalsIgnoreCase(status)) {
+            if (reservedBy == userID) {
+    %>
+        <button class="action-btn reserve-btn disabled-btn" disabled>You reserved this book</button>
+    <%
+            } else {
+    %>
+        <button class="action-btn reserve-btn disabled-btn" disabled>Reserved</button>
+    <%
+            }
+        }
+    %>
+
+    </td>
+</tr>
+<%
+        }
+
+    } catch (Exception e) {
+        out.println("<tr><td colspan='8'>Error: " + e.getMessage() + "</td></tr>");
+    } finally {
+        if (rs != null) rs.close();
+        if (stmt != null) stmt.close();
+        if (conn != null) conn.close();
+    }
+%>
         </tbody>
     </table>
     <div class="button-container">

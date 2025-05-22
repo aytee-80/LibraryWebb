@@ -207,8 +207,8 @@
 
         <label for="role">Role:</label>
         <select name="role" id="role" required>
-            <option value="member" <%= "member".equals(role) ? "selected" : "" %>>Member</option>
-            <option value="librarian" <%= "librarian".equals(role) ? "selected" : "" %>>Librarian</option>
+            <option value="Member" <%= "member".equals(role) ? "selected" : "" %>>Member</option>
+            <option value="Librarian" <%= "librarian".equals(role) ? "selected" : "" %>>Librarian</option>
         </select>
 
         <input type="submit" value="Register">

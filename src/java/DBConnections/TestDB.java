@@ -10,7 +10,12 @@ public class TestDB {
         try {
             // Just calling a static method to test connection
              Connection conn =  getConnection();
-            System.out.println("✅ Connected to database!");
+             if(conn != null){
+                System.out.println("✅ Connected to database!");
+             }else{
+                 System.out.println("✅ Failed to connect to database!");
+             }
+            
         } catch (Exception e) {
             System.err.println("❌ Connection failed: " + e.getMessage());
             e.printStackTrace();

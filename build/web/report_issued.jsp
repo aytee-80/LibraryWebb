@@ -148,7 +148,7 @@
             try {
                 conn = DBConnections.getConnection();
                 String sql = "SELECT bb.BookID, u.Name, u.Email, bb.ContactNumber, bb.BorrowDate, bb.returnbookdate " +
-                             "FROM BorrowedBooks bb JOIN Users u ON bb.UserID = u.UserID";
+                             "FROM BorrowedBooks bb JOIN Users2 u ON bb.UserID = u.UserID";
                 stmt = conn.prepareStatement(sql);
                 rs = stmt.executeQuery();
 

@@ -138,7 +138,7 @@
             con = DBConnections.getConnection();
             stmt = con.createStatement();
 
-            rsMembers = stmt.executeQuery("SELECT COUNT(*) FROM Users");
+            rsMembers = stmt.executeQuery("SELECT COUNT(*) FROM Users2");
             rsMembers.next();
             int totalMembers = rsMembers.getInt(1);
 

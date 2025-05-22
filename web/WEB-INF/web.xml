@@ -40,6 +40,10 @@
         <servlet-name>BorrowedBooksServlet</servlet-name>
         <servlet-class>addBooksServlet.BorrowedBooksServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InitDBServlet</servlet-name>
+        <servlet-class>addBooksServlet.InitDBServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addBooksServlet</servlet-name>
         <url-pattern>/addBooksServlet.do</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>BorrowedBooksServlet</servlet-name>
         <url-pattern>/BorrowedBooksServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InitDBServlet</servlet-name>
+        <url-pattern>/InitDBServlet.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

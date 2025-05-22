@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
 
         try {
             conn = DBConnections.getConnection();
-            String sql = "SELECT * FROM Users WHERE Email = ? AND Password = ?";
+            String sql = "SELECT * FROM Users2 WHERE Email = ? AND Password = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, email);
             stmt.setString(2, password);

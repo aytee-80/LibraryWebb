@@ -104,7 +104,7 @@
             stmt.close();
 
             // Step 2: Delete from BorrowedBooks table
-            stmt = conn.prepareStatement("DELETE FROM BorrowedBooks WHERE BookID = ? AND MemberID = ?");
+            stmt = conn.prepareStatement("DELETE FROM BorrowedBooks WHERE BookID = ? AND userid = ?");
             stmt.setInt(1, Integer.parseInt(returnBookId));
             stmt.setInt(2, userID);
             stmt.executeUpdate();
@@ -142,7 +142,7 @@
     <%
         try {
             conn = DBConnections.getConnection();
-            String query = "SELECT * FROM Books WHERE borrowed_by_member_id = ?";
+            String query = "SELECT * FROM Books WHERE userid = ?";
             stmt = conn.prepareStatement(query);
             stmt.setInt(1, userID);
             rs = stmt.executeQuery();
@@ -190,7 +190,7 @@
 </table>
 
 <div class="button-container">
-    <a href="memberDashboard.jsp">Back to Dashboard</a>
+    <a href="dashboard.jsp">Back to Dashboard</a>
 </div>
 
 </body>

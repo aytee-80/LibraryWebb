@@ -30,11 +30,7 @@ public class BookActionsServlet extends HttpServlet {
                 String status = rs.getString("Status");
 
                 if ("Available".equalsIgnoreCase(status)) {
-                    stmt = conn.prepareStatement("UPDATE Books SET Status = 'Borrowed', borrowed_by_member_id = ? WHERE BookID = ?");
-                    stmt.setInt(1, userID);
-                    stmt.setInt(2, bookId);
-                    session.setAttribute("userID", userID);
-                    
+  
                     request.getRequestDispatcher("borrowBook.jsp").forward(request, response);
                 } else if ("Borrowed".equalsIgnoreCase(status)) {
                     
