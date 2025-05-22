@@ -7,16 +7,10 @@ RUN apt-get update && \
     wget unzip curl ca-certificates && \
     apt-get clean
 
-# Install Oracle JDK 8u202 (manual file)
-COPY jdk-8u202-linux-x64.tar.gz /tmp/
-
-RUN mkdir -p /usr/lib/jvm && \
-    tar -xzf /tmp/jdk-8u202-linux-x64.tar.gz -C /usr/lib/jvm && \
-    rm /tmp/jdk-8u202-linux-x64.tar.gz
-
-# ✅ Set environment variables for Java
-ENV JAVA_HOME=/usr/lib/jvm/jdk1.8.0_202
-ENV PATH=$JAVA_HOME/bin:$PATH
+FROM eclipse-temurin:8-jdk
+RUN apt-get update && \
+    apt-get install -y wget unzip curl && \
+    apt-get clean
 
 # ✅ Set working directory
 WORKDIR /opt
