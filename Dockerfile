@@ -27,7 +27,7 @@ ENV GLASSFISH_HOME=/opt/glassfish5/glassfish
 ENV PATH=$GLASSFISH_HOME/bin:$PATH
 
 # Copy built WAR into autodeploy
-COPY target/Library.war $GLASSFISH_HOME/domains/domain1/autodeploy/app.war
+COPY dist/Library.war $GLASSFISH_HOME/domains/domain1/autodeploy/app.war
 
 # Add PostgreSQL JDBC driver
 WORKDIR $GLASSFISH_HOME/lib/ext
