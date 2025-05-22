@@ -1,20 +1,20 @@
 #!/bin/bash
 
-# Ensure asadmin is in PATH
+# Add asadmin to PATH
 export PATH=$GLASSFISH_HOME/bin:$PATH
 
-# Use Render's assigned port, or fallback to 8080 locally
+# Get Render-assigned port or default to 8080
 PORT=${PORT:-8080}
 
-# Start the domain in background
+# Start domain in background
 asadmin start-domain domain1 &
 
-# Wait for the domain to be ready
+# Wait for domain to boot
 sleep 20
 
-# Change port and bind address to be accessible externally
-asadmin set configs.config.server-config.network-config.network-listeners.network-listener.http-listener-1.port=$PORT
-asadmin set configs.config.server-config.network-config.network-listeners.network-listener.http-listener-1.address=0.0.0.0
+# Now update listener config explicitly via localhost:4848
+asadmin --host localhost --port 4848 set configs.config.server-config.network-config.network-listeners.network-listener.http-listener-1.port=$PORT
+asadmin --host localhost --port 4848 set configs.config.server-config.network-config.network-listeners.network-listener.http-listener-1.address=0.0.0.0
 
-# Tail the logs so Render keeps the container alive
+# Tail logs to keep container running
 tail -f $GLASSFISH_HOME/domains/domain1/logs/server.log
