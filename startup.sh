@@ -12,6 +12,9 @@ until asadmin --host localhost --port 4848 list-domains > /dev/null 2>&1; do
     sleep 5
 done
 
+asadmin --host localhost --port 4848 disable-secure-admin
+asadmin --host localhost --port 4848 delete-network-listener http-listener-2
+
 # Update port and address
 asadmin --host localhost --port 4848 set configs.config.server-config.network-config.network-listeners.network-listener.http-listener-1.port=$PORT
 asadmin --host localhost --port 4848 set configs.config.server-config.network-config.network-listeners.network-listener.http-listener-1.address=0.0.0.0
