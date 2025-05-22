@@ -12,13 +12,13 @@ RUN apt-get update && \
     apt-get install -y wget unzip curl tar && \
     apt-get clean
 
-# Download and install JDK 8u202
+# Install JDK 8u202
 WORKDIR /opt
 RUN wget https://mirrors.huaweicloud.com/java/jdk/8u202-b08/jdk-8u202-linux-x64.tar.gz && \
     tar -xvzf jdk-8u202-linux-x64.tar.gz && \
     rm jdk-8u202-linux-x64.tar.gz
 
-# Download and extract GlassFish 5.0.1
+# Install GlassFish 5.0.1
 WORKDIR /opt/glassfish5
 RUN wget --no-check-certificate https://download.oracle.com/glassfish/5.0.1/nightly/glassfish-5.0.1-b05-01_19_2019.zip && \
     unzip glassfish-5.0.1-b05-01_19_2019.zip && \
@@ -37,8 +37,8 @@ RUN wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.24/postgr
 COPY startup.sh $GLASSFISH_HOME/startup.sh
 RUN chmod +x $GLASSFISH_HOME/startup.sh
 
-# Expose default HTTP port (Render will override this internally)
+# Expose default HTTP port (Render sets PORT env var)
 EXPOSE 8080
 
-# Start GlassFish with custom script that sets the PORT dynamically
+# Start GlassFish via startup script
 CMD ["sh", "-c", "$GLASSFISH_HOME/startup.sh"]
