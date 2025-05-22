@@ -10,7 +10,7 @@ RUN apt-get update && \
 WORKDIR /opt/glassfish5
 
 # Download and extract GlassFish 5.0.1
-RUN wget https://download.java.net/maven/glassfish/org/glassfish/main/glassfish.zip/5.0.1/glassfish-5.0.1.zip  && \
+RUN wget --no-check-certificate https://github.com/eclipse-ee4j/glassfish/releases/download/5.0.1/glassfish-5.0.1.zip  && \
     unzip glassfish-5.0.1.zip && \
     rm glassfish-5.0.1.zip
 
