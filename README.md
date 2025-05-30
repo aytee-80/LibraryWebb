@@ -1,10 +1,10 @@
 # LibraryWebb
 
-A Java web application built with NetBeans and GlassFish.
-You can view books,add books,register,login,borrow,reserve,return books.
-It's more like a library but online
-Either register as a member or Librarian
-They Both have Different functionalities
+-A Java web application built with NetBeans and GlassFish.
+-You can view books,add books,register,login,borrow,reserve,return books.
+-It's more like a library but online
+-Either register as a member or Librarian
+-They Both have Different functionalities
 
 ## Requirements
 - JDK 8
@@ -25,7 +25,8 @@ They Both have Different functionalities
 5. It will automatically create the database tables and the database
 6. To confirm that it connected go to the testDB.java run it alone it will show you if it's connected or not
 7. Only postgreSQL database will work
-8. Unless you change it 
+8. Unless you change it
+9. The Application turn to get slow when trying to access the postgreSQL data , might be the internet cause the database is online or might be that the data is too big cause i added images
 
 ## Docker Deployment
 I Tried to run it on docker but it's giving me problems when i try to deploy it on render. 
