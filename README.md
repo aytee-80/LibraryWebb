@@ -21,7 +21,7 @@ They Both have Different functionalities
 1. I used renders's postgreSQL database to add data
 2. Since i'm on free mode the database expires on 16 june 2025
 3. The application won't be functional so you have to download the whole application
-4. Change the database connection in the ConnectionDB java file use yours
+4. Change the database connection in the DBConnection java file use yours
 5. It will automatically create the database tables and the database
 6. To confirm that it connected go to the testDB.java run it alone it will show you if it's connected or not
 7. Only postgreSQL database will work
