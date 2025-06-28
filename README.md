@@ -41,7 +41,7 @@ so if you have a web application that can support war file deploy it with that.
 
 ## user registration 
 
---- 
+
 
 
 * ![Screenshot 2025-06-28 180824](https://github.com/user-attachments/assets/b0a08d75-dd46-45b1-ac44-b44698df2812)
@@ -96,7 +96,7 @@ so if you have a web application that can support war file deploy it with that.
 
 ## Member Borrors and returns Book 
 
----
+
 
 * ![Screenshot 2025-06-28 181050](https://github.com/user-attachments/assets/625e4940-0497-4916-88be-9f122545fba8)
 
