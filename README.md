@@ -1,10 +1,10 @@
 # LibraryWebb
 
--A Java web application built with NetBeans and GlassFish.
--You can view books,add books,register,login,borrow,reserve,return books.
--It's more like a library but online
--Either register as a member or Librarian
--They Both have Different functionalities
+* A Java web application built with NetBeans and GlassFish.
+* You can view books,add books,register,login,borrow,reserve,return books.
+* It's more like a library but online
+* Either register as a member or Librarian
+* They Both have Different functionalities
 
 ## Requirements
 - JDK 8
