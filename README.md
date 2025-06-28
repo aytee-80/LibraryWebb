@@ -40,6 +40,10 @@ so if you have a web application that can support war file deploy it with that.
 ---
 
 ## user registration 
+
+--- 
+
+
 * ![Screenshot 2025-06-28 180824](https://github.com/user-attachments/assets/b0a08d75-dd46-45b1-ac44-b44698df2812)
 * ![Screenshot 2025-06-28 180916](https://github.com/user-attachments/assets/42869468-73bb-40cf-8776-bf5eb1527c3f)
 * ![Screenshot 2025-06-28 181134](https://github.com/user-attachments/assets/8bed9312-617e-49dd-9112-01e04985aee4)
@@ -47,12 +51,17 @@ so if you have a web application that can support war file deploy it with that.
 
 ---
 
+
+
 ## member login
 
 * ![Screenshot 2025-06-28 181013](https://github.com/user-attachments/assets/52cb0c5c-6462-40a1-bcb2-8287aaab5efe)
 * ![Screenshot 2025-06-28 181050](https://github.com/user-attachments/assets/625e4940-0497-4916-88be-9f122545fba8)
 
+
+
 ---
+
 
 ## Librarian login
 
@@ -61,17 +70,53 @@ so if you have a web application that can support war file deploy it with that.
 
 ---
 
+
+
 ## Librarian adds , deletes , updates book
+
 
 * ![Screenshot 2025-06-28 181502](https://github.com/user-attachments/assets/ea1e200a-8372-4457-9894-eb5ed84527fc)
 * ![Screenshot 2025-06-28 183444](https://github.com/user-attachments/assets/a753f919-3c52-4c4e-93c7-89966f0ea737)
+
+---
 
 * ![Screenshot 2025-06-28 183527](https://github.com/user-attachments/assets/747669e2-6c82-4552-8446-1a9d0819c292)
 * ![Screenshot 2025-06-28 183613](https://github.com/user-attachments/assets/563dab68-66ff-4630-8990-b54e19c8267b)
 * ![Screenshot 2025-06-28 183701](https://github.com/user-attachments/assets/265cffc0-e707-4a6c-a6b4-46f83c8ac9bb)
 
+
+---
+
 * ![Screenshot 2025-06-28 183735](https://github.com/user-attachments/assets/59b5c238-442f-4338-80d7-089a2acd49e7)
 * ![Screenshot 2025-06-28 183753](https://github.com/user-attachments/assets/0ad59d9c-8cdc-48cc-ae80-35c4883e8ac7)
+
+
+--- 
+
+
+## Member Borrors and returns Book 
+
+---
+
+* ![Screenshot 2025-06-28 181050](https://github.com/user-attachments/assets/625e4940-0497-4916-88be-9f122545fba8)
+
+---
+
+* ![Screenshot 2025-06-28 193450](https://github.com/user-attachments/assets/1c4f18ea-944b-4ccb-a597-d2e92a249310)
+* ![Screenshot 2025-06-28 193633](https://github.com/user-attachments/assets/1842669f-ef17-4230-a6b8-6c9666aadecb)
+* ![Screenshot 2025-06-28 193717](https://github.com/user-attachments/assets/182122b7-224d-4a1b-ade5-ae90b46c5aec)
+* ![Screenshot 2025-06-28 193757](https://github.com/user-attachments/assets/dfdbc045-43b6-4f50-bf80-0edcfaacc85b)
+
+---
+
+* ![Screenshot 2025-06-28 181050](https://github.com/user-attachments/assets/625e4940-0497-4916-88be-9f122545fba8)
+
+* ![Screenshot 2025-06-28 194746](https://github.com/user-attachments/assets/54dae129-a1f8-4049-86c4-d706f9023ca7)
+* ![Screenshot 2025-06-28 194818](https://github.com/user-attachments/assets/b1138684-4198-4e72-a1fb-f3dad6086cfb)
+
+* ![Screenshot 2025-06-28 193450](https://github.com/user-attachments/assets/1c4f18ea-944b-4ccb-a597-d2e92a249310)
+
+
 
 
 
